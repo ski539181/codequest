@@ -1,0 +1,333 @@
+/* ============================================
+   CODEQUEST — Pixel RPG Learning Platform
+   ============================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep: #15101f;
+  --bg-panel: #241c33;
+  --bg-panel-light: #2f2545;
+  --border-soft: #4a3f6b;
+  --border-bright: #7f6fc4;
+  --text-main: #f1edfa;
+  --text-dim: #a89ccb;
+  --accent-xp: #6cc24a;
+  --accent-coin: #f0b429;
+  --accent-streak: #e0603d;
+  --accent-danger: #d6455d;
+  --accent-boss: #b3413a;
+  --accent-locked: #5a5270;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'VT323', monospace;
+}
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 18px;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+}
+
+img { image-rendering: pixelated; }
+
+.screen-frame {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 12px 12px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.topbar-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+}
+.topbar-menu-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.icon-16 { width: 18px; height: 18px; }
+.icon-24 { width: 24px; height: 24px; }
+
+/* ---------- Character card ---------- */
+.character-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 14px;
+}
+.sprite-wrap {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background: var(--bg-panel-light);
+  border: 2px solid var(--border-bright);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.sprite-character {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.character-info { flex: 1; min-width: 0; }
+.character-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.character-name {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+.character-level {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--accent-coin);
+}
+.character-title {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin: 4px 0 8px;
+}
+
+/* ---------- Bars ---------- */
+.bar-track {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-soft);
+  height: 12px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+.bar-xp { background: var(--accent-xp); }
+.bar-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ---------- Panels ---------- */
+.panel {
+  background: var(--bg-panel);
+  border: 2px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 12px;
+}
+.panel-title {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Quest list ---------- */
+.quest-list, .story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quest-card, .story-card {
+  background: var(--bg-panel-light);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 10px;
+}
+.quest-card.locked, .story-card.locked {
+  opacity: 0.55;
+}
+.quest-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.quest-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+.quest-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.quest-badge {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.badge-boss { background: var(--accent-boss); color: #fbdcd9; }
+.badge-reward { background: #2f4f2f; color: #b9e8a8; }
+.badge-locked { background: var(--accent-locked); color: #d8d4e8; }
+
+.quest-start-btn, .btn-primary {
+  width: 100%;
+  margin-top: 10px;
+  background: #534ab7;
+  color: var(--text-main);
+  border: 1px solid var(--border-bright);
+  border-radius: 4px;
+  padding: 9px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  cursor: pointer;
+}
+.quest-start-btn:active, .btn-primary:active { transform: scale(0.98); }
+.quest-start-btn:disabled {
+  background: var(--bg-panel);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+/* ---------- Rival card ---------- */
+.rival-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-panel-light);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 10px;
+}
+.rival-sprite-wrap {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: #3a2840;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rival-sprite-wrap img { width: 28px; height: 28px; }
+.rival-name { font-size: 15px; font-weight: bold; }
+.rival-status { font-size: 13px; color: var(--accent-danger); }
+.rival-level {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--accent-coin);
+  margin-left: auto;
+}
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 16, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+}
+.modal-overlay[hidden] { display: none; }
+.modal-box {
+  background: var(--bg-panel);
+  border: 2px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 18px;
+  cursor: pointer;
+}
+.modal-box h3 {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-right: 24px;
+}
+.modal-box p { font-size: 15px; color: var(--text-dim); margin-bottom: 12px; }
+.modal-box textarea {
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 10px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+.modal-feedback {
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 20px;
+}
+.modal-feedback.ok { color: var(--accent-xp); }
+.modal-feedback.err { color: var(--accent-danger); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-coin);
+  color: #3a2700;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 12px 18px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 60;
+  box-shadow: none;
+  border: 2px solid #3a2700;
+}
+.toast[hidden] { display: none; }
+
+@media (max-width: 360px) {
+  html, body { font-size: 16px; }
+  .character-name { font-size: 10px; }
+}
