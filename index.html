@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Codequest — Learn & Level Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="screen-frame">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="topbar-stat">
+      <img src="assets/sprites/icons/coin.png" alt="" class="icon-16">
+      <span id="stat-coins">0</span>
+    </div>
+    <div class="topbar-stat">
+      <img src="assets/sprites/icons/streak.png" alt="" class="icon-16">
+      <span id="stat-streak">0</span>
+    </div>
+    <button class="topbar-menu-btn" id="menu-btn" aria-label="เมนู">☰</button>
+  </header>
+
+  <!-- ============ CHARACTER CARD ============ -->
+  <section class="character-card" id="character-card">
+    <div class="sprite-wrap">
+      <img src="assets/sprites/wizard/idle.png" alt="ตัวละครของคุณ" class="sprite-character" id="player-sprite">
+    </div>
+    <div class="character-info">
+      <div class="character-name-row">
+        <span class="character-name" id="player-name">CODEMANCER</span>
+        <span class="character-level" id="player-level">LV 1</span>
+      </div>
+      <div class="character-title" id="player-title">Novice</div>
+      <div class="bar-track">
+        <div class="bar-fill bar-xp" id="xp-bar" style="width:0%"></div>
+      </div>
+      <div class="bar-label"><span id="xp-current">0</span> / <span id="xp-needed">100</span> XP</div>
+    </div>
+  </section>
+
+  <!-- ============ QUEST LOG ============ -->
+  <section class="panel">
+    <h2 class="panel-title"><img src="assets/sprites/icons/sword.png" class="icon-16" alt="">เควสต์</h2>
+    <div id="quest-list" class="quest-list">
+      <!-- Quest cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ============ STORY MAP ============ -->
+  <section class="panel">
+    <h2 class="panel-title"><img src="assets/sprites/icons/scroll.png" class="icon-16" alt="">เนื้อเรื่อง</h2>
+    <div id="story-list" class="story-list">
+      <!-- Chapters injected by JS -->
+    </div>
+  </section>
+
+  <!-- ============ RIVAL ============ -->
+  <section class="panel">
+    <h2 class="panel-title"><img src="assets/sprites/icons/ghost.png" class="icon-16" alt="">คู่แข่ง</h2>
+    <div id="rival-card" class="rival-card">
+      <!-- Rival info injected by JS -->
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ QUEST MODAL ============ -->
+<div class="modal-overlay" id="quest-modal" hidden>
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="ปิด">✕</button>
+    <h3 id="modal-quest-title">ชื่อเควสต์</h3>
+    <p id="modal-quest-desc">รายละเอียดเควสต์</p>
+    <textarea id="modal-answer" placeholder="พิมพ์คำตอบหรือโค้ดของคุณที่นี่..." rows="6"></textarea>
+    <button class="btn-primary" id="modal-submit">ส่งคำตอบ</button>
+    <p class="modal-feedback" id="modal-feedback"></p>
+  </div>
+</div>
+
+<!-- ============ LEVEL UP TOAST ============ -->
+<div class="toast" id="levelup-toast" hidden>
+  <img src="assets/sprites/icons/star.png" alt="" class="icon-24">
+  <span id="toast-text">เลเวลอัป!</span>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
